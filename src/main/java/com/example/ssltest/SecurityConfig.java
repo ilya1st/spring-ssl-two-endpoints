@@ -23,7 +23,7 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authorize) -> authorize
+                .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll()).x509(withDefaults());
 
         return http.build();
@@ -32,27 +32,27 @@ public class SecurityConfig{
     // @formatter:off
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
+        UserDetails user = User.builder()
                 .username("OU=111, O=GOPA, L=Tabmov, ST=Tambov, C=RU")
                 .password("password")
                 .roles("USER")
                 .build();
-        UserDetails dianne = User.withDefaultPasswordEncoder()
+        UserDetails dianne = User.builder()
                 .username("dianne")
                 .password("password")
                 .roles("USER")
                 .build();
-        UserDetails rod = User.withDefaultPasswordEncoder()
+        UserDetails rod = User.builder()
                 .username("rod")
                 .password("password")
                 .roles("USER", "ADMIN")
                 .build();
-        UserDetails scott = User.withDefaultPasswordEncoder()
+        UserDetails scott = User.builder()
                 .username("scott")
                 .password("password")
                 .roles("USER")
                 .build();
-        UserDetails bob = User.withDefaultPasswordEncoder()
+        UserDetails bob = User.builder()
                 .username("UncleBob")
                 .password("password")
                 .roles("USER")
